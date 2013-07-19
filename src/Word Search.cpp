@@ -42,9 +42,9 @@ public:
     	{
     		visited[posx][posy] = true;
     		ret = search(board, word, dep+1, visited, posx+1, posy);
-            if(!ret)
+        if(!ret)
         		ret = search(board, word, dep+1, visited, posx, posy+1);
-            if(!ret)
+        if(!ret)
         		ret = search(board, word, dep+1, visited, posx, posy-1);
     		if(!ret)
     			ret = search(board, word, dep+1, visited, posx-1, posy);
