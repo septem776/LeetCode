@@ -3,17 +3,26 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
-#include <list>
+#include <vector>
 using namespace std;
 
 class Solution {
 public:
     void reverseWords(string &s) {
         istringstream iss(s);
-        list<string> l;
-        copy(istream_iterator<string>(iss), istream_iterator<string>(), back_insert_iterator<list<string> >(l));
-        l.reverse();
-        copy(l.begin(), l.end(), ostream_iterator<string>(cout, " "));
+        vector<string> v;
+        while(iss >> s)
+        {
+            v.push_back(s);
+        }
+        ostringstream oss;
+        for(int i=v.size()-1; i>=0; i--)
+        {
+            if(i != v.size()-1)
+                oss << " ";
+            oss << v[i];
+        }
+        s = oss.str();
     }
 };
 
@@ -22,5 +31,6 @@ int main()
     Solution so;
     string s("test the word");
     so.reverseWords(s);
+    cout<<s<<endl;
     return 0;
 }
