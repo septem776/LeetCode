@@ -1,39 +1,51 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+#include <vector>
+#include <iostream>
+#include <stack>
+#include <string>
+#include <sstream>
+using namespace std;
+
+//Definition for singly-linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
 public:
     ListNode *deleteDuplicates(ListNode *head) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if(!head || !head->next)
-            return head;
-        ListNode *p = head;
-        ListNode *q = head->next;
-        
-        unordered_set<int> s;
-        s.insert(head->val);
-        while(q)
-        {
-            if(s.count(q->val) == 0)
-            {
-                s.insert(q->val);
-                p = p->next;
-                q = q->next;
-            }
-            else
-            {
-                p->next = q->next;
-                delete q;
-                q = p->next;
-            }
-            
-        }
-        return head;
+        if(!head)
+			return head;
+		ListNode *p = head;
+		ListNode *q = head->next;
+		while(p && q)
+		{
+			while(p->val == q->val)
+			{
+				q = q->next;
+				if(!q)
+					break;
+			}
+			if(q != p->next)
+			{
+				p->next = q;
+				p = q;
+				if(q)
+					q = q->next;
+				continue;
+			}
+			p = p->next;
+			q = q->next;
+		}
+		return head;
     }
 };
+
+int main()
+{
+	ListNode *node = new ListNode(1);
+	Solution so;
+	
+	return 0;
+}

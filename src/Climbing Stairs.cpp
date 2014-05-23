@@ -1,17 +1,26 @@
+#include <vector>
+#include <iostream>
+#include <stack>
+#include <string>
+#include <sstream>
+using namespace std;
+
 class Solution {
 public:
-    int climbStairs(int n) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        dp[0] = 0;
-        dp[1] = 1;
-        dp[2] = 2;
-        for(int i=3; i<=n; i++)
-        {
-            dp[i] = dp[i-1] + dp[i-2];
-        }
-        return dp[n];
-    }
-private:
-    int dp[1000];
+	int climbStairs(int n) {
+		vector<int> ret(n+1, 0);
+		ret[0] = ret[1] = 1;
+		for(int i=2; i<=n; i++)
+		{
+			ret[i] = ret[i-2] + ret[i-1];
+		}
+		return ret[n];
+	}
 };
+
+int main()
+{
+	Solution so;
+	
+	return 0;
+}
