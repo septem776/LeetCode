@@ -12,4 +12,18 @@ class Solution:
             return head
         p = head
         q = head.next
-        
+        while p != None and q != None:
+            while p.val == q.val:
+                q = q.next
+                if q is None:
+                    break
+            if q != p.next:
+                p.next = q
+                p = q
+                if q != None:
+                    q = q.next
+                continue
+
+            p = p.next
+            q = q.next
+        return head

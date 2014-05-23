@@ -1,0 +1,15 @@
+class Solution:
+    # @param    A       a list of integers
+    # @param    elem    an integer, value need to be removed
+    # @return an integer
+    def removeElement(self, A, elem):
+        while elem in A:
+            A.remove(elem)
+        return len(A)
+        
+if __name__ == '__main__':
+    so = Solution()
+    A = [1,2,3,4]
+    elem = 3
+    l = so.removeElement(A, elem)
+    print(l)
