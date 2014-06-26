@@ -11,16 +11,13 @@ class Solution:
     def isBalanced(self, root):
         if root is None:
             return True
-        if root.left is None and root.right is None:
-            return True
-        if root.left is None and root.right is not None:
-            return True
-        if root.left is not None and root.right is None:
-            return True
+        diff = abs(self.maxHeight(root.left) - self.maxHeight(root.right))
+        if diff > 1:
+            return False
 
         return self.isBalanced(root.left) and self.isBalanced(root.right)
 
-    def maxHeight(node):
+    def maxHeight(self, node):
         if node is None:
             return 0
 
