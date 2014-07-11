@@ -1,39 +1,30 @@
 class Solution {
 public:
-    vector<vector<int> > threeSum(vector<int> &num) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
+    vector<vector<int> > threeSum(vector<int> &num) 
+    {
+        vector<int> tmp(3);
+        vector<vector<int> > rs;
         sort(num.begin(), num.end());
-        vector<vector<int> > ret;
-        vector<int> tmp;
-        ret.clear();
-        if(num.size()<3)
-            return ret;
-        int a, b, c;
-        for(a=1; a<num.size()-1; a++)
+
+        for (int i = 0; i < num.size(); i++)
         {
-            
-            b = 0;
-            c = num.size()-1;
-            while(b<a && a<c)
+            for (int j = i+1, k = num.size()-1; j < k; )
             {
-                tmp.clear();
-                if(num[b] + num[c] > -num[a])
-                    c--;
-                else if(num[b] + num[c] < -num[a])
-                    b++;
+                if (num[i]+num[j]+num[k] < 0) j++;
+                else if (num[i]+num[j]+num[k] >0) k--;
                 else
                 {
-                    tmp.push_back(num[b]);
-                    tmp.push_back(num[a]);
-                    tmp.push_back(num[c]);
-                    if(find(ret.begin(), ret.end(), tmp) == ret.end())
-                        ret.push_back(tmp);
-                    c--;
-                    b++;
+                    tmp[0] = num[i]; 
+                    tmp[1] = num[j]; 
+                    tmp[2] = num[k];
+                    rs.push_back(tmp);
+                    j++, k--;
+                    while (j<k && num[j] == num[j-1]) j++;
+                    while (j<k && num[k] == num[k+1]) k--;
                 }
             }
+            while (i<num.size() && num[i] == num[i+1]) i++;
         }
-        return ret;
+        return rs;
     }
 };
